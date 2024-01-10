@@ -42,10 +42,11 @@ function getEnvFiles() {
   const envVal = process.env[envKey] ? process.env[envKey] : "";
   const path = argv.p || argv.path || "";
   return [
-    resolveFile(path),
+    resolveFile(".env"),
     resolveFile(`.env.${envVal}`),
     resolveFile(".env.local"),
-    resolveFile(".env"),
+    resolveFile(`.env.${envVal}.local`),
+    resolveFile(path),
   ].filter(Boolean);
 }
 
